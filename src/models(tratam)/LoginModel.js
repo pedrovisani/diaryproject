@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const isEmail = require('validator/lib/isEmail');
+const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
 const LoginSchema = new mongoose.Schema({
@@ -56,7 +56,7 @@ class Login {
     valida() {
         this.cleanUp();
 
-        if (!isEmail(this.body.email)) this.errors.push('Email inválido');
+        if (!validator.isEmail(this.body.email)) this.errors.push('Email inválido');
 
         if (this.body.password.length < 3 || this.body.password.length > 50) {
             this.errors.push('A senha precisa ter entre 3 e 50 caracteres.')
