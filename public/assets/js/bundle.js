@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./frontend/modules/Login.js":
+/***/ "./frontend/modules/login.js":
 /*!***********************************!*\
-  !*** ./frontend/modules/Login.js ***!
+  !*** ./frontend/modules/login.js ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -48,16 +48,14 @@ var Login = /*#__PURE__*/function () {
       var emailInput = el.querySelector('input[name="email"]');
       var passwordInput = el.querySelector('input[name="password"]');
       var error = false;
-      if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput, value)) {
+      if (!validator__WEBPACK_IMPORTED_MODULE_0___default().isEmail(emailInput.value)) {
         alert('E-mail inválido');
         error = true;
       }
-      ;
       if (passwordInput.value.length < 3 || passwordInput.value.length > 50) {
         alert('Senha precisa ter entre 3 e 50 caracteres');
         error = true;
       }
-      ;
       if (!error) el.submit();
     }
   }]);
@@ -30975,14 +30973,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_stable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Login */ "./frontend/modules/Login.js");
+/* harmony import */ var _modules_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/login */ "./frontend/modules/login.js");
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/css/style.css */ "./frontend/assets/css/style.css");
 
 
 
 
-var login = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.formLogin');
-var cadastro = new _modules_Login__WEBPACK_IMPORTED_MODULE_2__["default"]('.formCadastro');
+var login = new _modules_login__WEBPACK_IMPORTED_MODULE_2__["default"]('#formLogin');
+var cadastro = new _modules_login__WEBPACK_IMPORTED_MODULE_2__["default"]('#formCadastro');
 login.init();
 cadastro.init();
 })();

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
 const LoginSchema = new mongoose.Schema({
@@ -8,6 +7,11 @@ const LoginSchema = new mongoose.Schema({
 });
 
 const LoginModel = mongoose.model('Login', LoginSchema);
+
+function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
 
 class Login {
     constructor(body) {
@@ -56,7 +60,7 @@ class Login {
     valida() {
         this.cleanUp();
 
-        if (!validator.isEmail(this.body.email)) this.errors.push('Email inválido');
+        if (!validateEmail(this.body.email)) this.errors.push('Email inválido');
 
         if (this.body.password.length < 3 || this.body.password.length > 50) {
             this.errors.push('A senha precisa ter entre 3 e 50 caracteres.')

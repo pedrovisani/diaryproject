@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const ContatoSchema = new mongoose.Schema({
     nome: { type: String, required: true },
@@ -10,6 +9,11 @@ const ContatoSchema = new mongoose.Schema({
 });
 
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
+
+function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
 
 function Contato(body) {
     this.body = body;
@@ -28,7 +32,7 @@ Contato.prototype.register = async function () {
 Contato.prototype.valida = function () {
     this.cleanUp();
 
-    if (this.body.email && !validator.isEmail(this.body.email)) this.errors.push('Email inválido');
+    if (this.body.email && !validateEmail(this.body.email)) this.errors.push('Email inválido');
     if (!this.body.nome) this.errors.push('Nome é um campo obrigatório!');
     if (!this.body.email && !this.body.telefone) {
         this.errors.push('Pelo menos um campo precisa ser preenchido: e-mail ou telefone.');
